@@ -1,0 +1,380 @@
+{
+	"info": {
+		"_postman_id": "",
+		"name": "Title",
+		"description": "Title",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": ""
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "register",
+					"item": [
+						{
+							"name": "ユーザ登録",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody).original.user_register;",
+											"pm.environment.set(\"UserID\", jsonData.user_id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/user/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"register"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "正常に処理できた",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/user/register",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												"register"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"original\": {\n    \"user_register\": {\n      \"user_id\": \"<long>\"\n    }\n  },\n  \"common\": {\n    \"delete\": {\n      \"user_coin\": [\n        {\n          \"user_id\": \"<long>\",\n          \"currency\": \"<long>\"\n        },\n        {\n          \"user_id\": \"<long>\",\n          \"currency\": \"<long>\"\n        }\n      ],\n      \"user_monster\": [\n        {\n          \"user_id\": \"<long>\",\n          \"monster_id\": \"<long>\",\n          \"exp\": \"<long>\"\n        },\n        {\n          \"user_id\": \"<long>\",\n          \"monster_id\": \"<long>\",\n          \"exp\": \"<long>\"\n        }\n      ],\n      \"user_item\": [\n        {\n          \"user_id\": \"<long>\",\n          \"item_id\": \"<long>\",\n          \"count\": \"<long>\"\n        },\n        {\n          \"user_id\": \"<long>\",\n          \"item_id\": \"<long>\",\n          \"count\": \"<long>\"\n        }\n      ]\n    },\n    \"update\": {\n      \"user_coin\": [\n        {\n          \"user_id\": \"<long>\",\n          \"currency\": \"<long>\"\n        },\n        {\n          \"user_id\": \"<long>\",\n          \"currency\": \"<long>\"\n        }\n      ],\n      \"user_monster\": [\n        {\n          \"user_id\": \"<long>\",\n          \"monster_id\": \"<long>\",\n          \"exp\": \"<long>\"\n        },\n        {\n          \"user_id\": \"<long>\",\n          \"monster_id\": \"<long>\",\n          \"exp\": \"<long>\"\n        }\n      ],\n      \"user_item\": [\n        {\n          \"user_id\": \"<long>\",\n          \"item_id\": \"<long>\",\n          \"count\": \"<long>\"\n        },\n        {\n          \"user_id\": \"<long>\",\n          \"item_id\": \"<long>\",\n          \"count\": \"<long>\"\n        }\n      ]\n    }\n  }\n}"
+								},
+								{
+									"name": "unexpected error",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/user/register",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												"register"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": \"<long>\",\n  \"message\": \"<string>\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "data",
+					"item": [
+						{
+							"name": "ユーザデータ取得",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/user/data?userId={{UserID}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"user",
+										"data"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "{{UserID}}",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "正常に処理できた",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/user/data?userId=<long>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												"data"
+											],
+											"query": [
+												{
+													"key": "userId",
+													"value": "<long>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"original\": {\n    \"user_register\": {\n      \"user_id\": \"<long>\"\n    }\n  },\n  \"common\": {\n    \"delete\": {\n      \"user_coin\": [\n        {\n          \"user_id\": \"<long>\",\n          \"currency\": \"<long>\"\n        },\n        {\n          \"user_id\": \"<long>\",\n          \"currency\": \"<long>\"\n        }\n      ],\n      \"user_monster\": [\n        {\n          \"user_id\": \"<long>\",\n          \"monster_id\": \"<long>\",\n          \"exp\": \"<long>\"\n        },\n        {\n          \"user_id\": \"<long>\",\n          \"monster_id\": \"<long>\",\n          \"exp\": \"<long>\"\n        }\n      ],\n      \"user_item\": [\n        {\n          \"user_id\": \"<long>\",\n          \"item_id\": \"<long>\",\n          \"count\": \"<long>\"\n        },\n        {\n          \"user_id\": \"<long>\",\n          \"item_id\": \"<long>\",\n          \"count\": \"<long>\"\n        }\n      ]\n    },\n    \"update\": {\n      \"user_coin\": [\n        {\n          \"user_id\": \"<long>\",\n          \"currency\": \"<long>\"\n        },\n        {\n          \"user_id\": \"<long>\",\n          \"currency\": \"<long>\"\n        }\n      ],\n      \"user_monster\": [\n        {\n          \"user_id\": \"<long>\",\n          \"monster_id\": \"<long>\",\n          \"exp\": \"<long>\"\n        },\n        {\n          \"user_id\": \"<long>\",\n          \"monster_id\": \"<long>\",\n          \"exp\": \"<long>\"\n        }\n      ],\n      \"user_item\": [\n        {\n          \"user_id\": \"<long>\",\n          \"item_id\": \"<long>\",\n          \"count\": \"<long>\"\n        },\n        {\n          \"user_id\": \"<long>\",\n          \"item_id\": \"<long>\",\n          \"count\": \"<long>\"\n        }\n      ]\n    }\n  }\n}"
+								},
+								{
+									"name": "unexpected error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/user/data?userId=<long>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"user",
+												"data"
+											],
+											"query": [
+												{
+													"key": "userId",
+													"value": "<long>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": \"<long>\",\n  \"message\": \"<string>\"\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "monster",
+			"item": [
+				{
+					"name": "enhance",
+					"item": [
+						{
+							"name": "モンスター強化",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"monster_id\": 1,\n  \"items\": [\n    {\n      \"item_id\": 1,\n      \"count\": 15\n    },\n    {\n      \"item_id\": 2,\n      \"count\": 30\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/monster/enhance?userId={{UserID}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"monster",
+										"enhance"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "{{UserID}}",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "正常に処理できた",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"monster_id\": \"<long>\",\n  \"items\": [\n    {\n      \"item_id\": \"<long>\",\n      \"count\": \"<long>\"\n    },\n    {\n      \"item_id\": \"<long>\",\n      \"count\": \"<long>\"\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/monster/enhance?userId=<long>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"monster",
+												"enhance"
+											],
+											"query": [
+												{
+													"key": "userId",
+													"value": "<long>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"original\": {\n    \"user_register\": {\n      \"user_id\": \"<long>\"\n    }\n  },\n  \"common\": {\n    \"delete\": {\n      \"user_coin\": [\n        {\n          \"user_id\": \"<long>\",\n          \"currency\": \"<long>\"\n        },\n        {\n          \"user_id\": \"<long>\",\n          \"currency\": \"<long>\"\n        }\n      ],\n      \"user_monster\": [\n        {\n          \"user_id\": \"<long>\",\n          \"monster_id\": \"<long>\",\n          \"exp\": \"<long>\"\n        },\n        {\n          \"user_id\": \"<long>\",\n          \"monster_id\": \"<long>\",\n          \"exp\": \"<long>\"\n        }\n      ],\n      \"user_item\": [\n        {\n          \"user_id\": \"<long>\",\n          \"item_id\": \"<long>\",\n          \"count\": \"<long>\"\n        },\n        {\n          \"user_id\": \"<long>\",\n          \"item_id\": \"<long>\",\n          \"count\": \"<long>\"\n        }\n      ]\n    },\n    \"update\": {\n      \"user_coin\": [\n        {\n          \"user_id\": \"<long>\",\n          \"currency\": \"<long>\"\n        },\n        {\n          \"user_id\": \"<long>\",\n          \"currency\": \"<long>\"\n        }\n      ],\n      \"user_monster\": [\n        {\n          \"user_id\": \"<long>\",\n          \"monster_id\": \"<long>\",\n          \"exp\": \"<long>\"\n        },\n        {\n          \"user_id\": \"<long>\",\n          \"monster_id\": \"<long>\",\n          \"exp\": \"<long>\"\n        }\n      ],\n      \"user_item\": [\n        {\n          \"user_id\": \"<long>\",\n          \"item_id\": \"<long>\",\n          \"count\": \"<long>\"\n        },\n        {\n          \"user_id\": \"<long>\",\n          \"item_id\": \"<long>\",\n          \"count\": \"<long>\"\n        }\n      ]\n    }\n  }\n}"
+								},
+								{
+									"name": "unexpected error",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"monster_id\": \"<long>\",\n  \"items\": [\n    {\n      \"item_id\": \"<long>\",\n      \"count\": \"<long>\"\n    },\n    {\n      \"item_id\": \"<long>\",\n      \"count\": \"<long>\"\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/monster/enhance?userId=<long>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"monster",
+												"enhance"
+											],
+											"query": [
+												{
+													"key": "userId",
+													"value": "<long>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": \"<long>\",\n  \"message\": \"<string>\"\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https"
+		}
+	]
+}

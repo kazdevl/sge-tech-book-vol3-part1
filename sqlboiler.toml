@@ -1,0 +1,15 @@
+tag=["db"]
+output="infra/mysql/models"
+no-tests=true
+templates = [
+    "pkg/infra/mysql/template/default",
+    "pkg/infra/mysql/template/default_test",
+    "pkg/infra/mysql/template/custom",
+]
+
+[mysql]
+    dbname     = "game_server_example"
+    host       = "127.0.0.1"
+    port       = 13502
+    user       = "root"
+    sslmode    = "false"

@@ -1,0 +1,47 @@
+version: "3.7"
+services:
+  mysql:
+    container_name: game-server-example-mysql
+    image: mysql:8.0
+    platform: linux/x86_64
+    command: >
+      mysqld
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+    ports:
+      - 13502:3306
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - TZ=UTC
+    volumes:
+      - mysql:/var/lib/mysql
+    deploy:
+      resources:
+        limits:
+          memory: 2g
+          cpus: '1'
+  game:
+    container_name: game-server-example-server
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    expose:
+      - 8090
+    ports:
+      - 8090:8090
+    tty: true
+    environment:
+      ENABLE_CACHE_REPOSITORY: 1
+      DB_HOST: game-server-example-mysql
+      DB_PORT: 3306
+      PORT: 8090
+    depends_on:
+      - mysql
+    deploy:
+      resources:
+        limits:
+          memory: 2g
+          cpus: '1'
+
+volumes:
+  mysql:

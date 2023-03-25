@@ -1,0 +1,190 @@
+openapi: 3.0.3
+info:
+  title: Title
+  description: Title
+  version: 1.0.0
+servers:
+  - url: 'https'
+paths:
+  /user/register:
+    post:
+      summary: ユーザ登録
+      operationId: userRegister
+      responses:
+        '200':
+          description: 正常に処理できた
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /user/data:
+    get:
+      summary: ユーザデータ取得
+      operationId: userGetData
+      parameters:
+        - in: query
+          name: userId
+          schema:
+            type: integer
+            format: int64
+          required: true
+      responses:
+        '200':
+          description: 正常に処理できた
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /monster/enhance:
+    post:
+      summary: モンスター強化
+      operationId: monsterEnhance
+      parameters:
+        - in: query
+          name: userId
+          schema:
+            type: integer
+            format: int64
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                monster_id:
+                  type: integer
+                  format: int64
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      item_id:
+                        type: integer
+                        format: int64
+                      count:
+                        type: integer
+                        format: int64
+      responses:
+        '200':
+          description: 正常に処理できた
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    APIResponse:
+      type: object
+      properties:
+        original:
+          $ref: '#/components/schemas/OriginalResponse'
+        common:
+          $ref: '#/components/schemas/CommonResponse'
+    OriginalResponse:
+      type: object
+      properties:
+        user_register:
+          $ref: '#/components/schemas/UserRegisterResponseContent'
+    CommonResponse:
+      type: object
+      properties:
+        delete:
+          type: object
+          properties:
+            user_coin:
+              type: array
+              items:
+                $ref: '#/components/schemas/UserCoin'
+            user_monster:
+              type: array
+              items:
+                $ref: '#/components/schemas/UserMonster'
+            user_item:
+              type: array
+              items:
+                $ref: '#/components/schemas/UserItem'
+        update:
+          type: object
+          properties:
+            user_coin:
+              type: array
+              items:
+                $ref: '#/components/schemas/UserCoin'
+            user_monster:
+              type: array
+              items:
+                $ref: '#/components/schemas/UserMonster'
+            user_item:
+              type: array
+              items:
+                $ref: '#/components/schemas/UserItem'
+    UserRegisterResponseContent:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          format: int64
+    UserCoin:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          format: int64
+        currency:
+          type: integer
+          format: int64
+    UserMonster:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          format: int64
+        monster_id:
+          type: integer
+          format: int64
+        exp:
+          type: integer
+          format: int64
+    UserItem:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          format: int64
+        item_id:
+          type: integer
+          format: int64
+        count:
+          type: integer
+          format: int64
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int64
+        message:
+          type: string

@@ -1,0 +1,2 @@
+dsn: mysql://root@localhost:13502/game_server_example
+docPath: ddl/doc

@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+  swagger-editor:
+    image: swaggerapi/swagger-editor
+    container_name: "game-server-example_swagger-editor"
+    ports:
+      - "8011:8080"
+
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    container_name: "game-server-example_swagger-ui"
+    ports:
+      - "8012:8080"
+    volumes:
+      - ./openapi.yaml:/openapi.yaml
+    environment:
+      SWAGGER_JSON: /openapi.yaml
+
+  swagger-api:
+    image: stoplight/prism:3
+    container_name: "game-server-example_swagger-api"
+    ports:
+      - "8013:4010"
+    command: mock -d -h 0.0.0.0 /openapi.yaml
+    volumes:
+      - ./openapi.yaml:/openapi.yaml
